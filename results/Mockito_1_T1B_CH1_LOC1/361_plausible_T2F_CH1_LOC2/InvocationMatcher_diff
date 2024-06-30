@@ -1,0 +1,42 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Mockito_1/361/InvocationMatcher_Origin.java"	2023-02-22 19:36:14.433194416 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Mockito_1/361/InvocationMatcher.java"	2023-02-22 19:36:14.433194416 +0900
+@@ -117,38 +117,7 @@
+         return invocation.getLocation();
+     }
+ 
+-    public void captureArgumentsFrom(Invocation invocation) {
+-        if (invocation.getMethod().isVarArgs()) {
+-            int indexOfVararg = invocation.getRawArguments().length - 1;
+-            throw new UnsupportedOperationException();
+-
+-        } else {
+-            for (int position = 0; position < matchers.size(); position++) {
+-                Matcher m = matchers.get(position);
+-                if (m instanceof CapturesArguments) {
+-                    ((CapturesArguments) m).captureFrom(invocation.getArgumentAt(position, Object.class));
+-                }
+-            }
+-        }
+-
+-//        for (int position = 0; position < matchers.size(); position++) {
+-//            Matcher m = matchers.get(position);
+-//            if (m instanceof CapturesArguments && invocation.getRawArguments().length > position) {
+-//                //TODO SF - this whole lot can be moved captureFrom implementation
+-//                if(isVariableArgument(invocation, position) && isVarargMatcher(m)) {
+-//                    Object array = invocation.getRawArguments()[position];
+-//                    for (int i = 0; i < Array.getLength(array); i++) {
+-//                        ((CapturesArguments) m).captureFrom(Array.get(array, i));
+-//                    }
+-//                    //since we've captured all varargs already, it does not make sense to process other matchers.
+-//                    return;
+-//                } else {
+-//                    ((CapturesArguments) m).captureFrom(invocation.getRawArguments()[position]);
+-//                }
+-//            }
+-//        }
+-    }
+-
++public void captureArgumentsFrom ( Invocation invocation ) { if ( invocation . getMethod ( ) . isVarArgs ( ) ) { int indexOfVararg = invocation . getRawArguments ( ) . length - 1 ; if ( indexOfVararg == - 1 ) return ; } else { for ( int position = 0 ; position < matchers . size ( ) ; position ++ ) { Matcher m = matchers . get ( position ) ; if ( m instanceof CapturesArguments ) { ( ( CapturesArguments ) m ) . captureFrom ( invocation . getArgumentAt ( position , Object . class ) ) ; } } } }
+     private boolean isVarargMatcher(Matcher matcher) {
+         Matcher actualMatcher = matcher;
+         if (actualMatcher instanceof MatcherDecorator) {

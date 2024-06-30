@@ -1,0 +1,24 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_8/881/DiscreteDistribution_Origin.java"	2023-02-22 17:37:36.806570795 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_8/881/DiscreteDistribution.java"	2023-02-22 17:37:36.810570819 +0900
+@@ -178,20 +178,5 @@
+      * @throws NotStrictlyPositiveException if {@code sampleSize} is not
+      * positive.
+      */
+-    public T[] sample(int sampleSize) throws NotStrictlyPositiveException {
+-        if (sampleSize <= 0) {
+-            throw new NotStrictlyPositiveException(LocalizedFormats.NUMBER_OF_SAMPLES,
+-                    sampleSize);
+-        }
+-
+-        final T[]out = (T[]) java.lang.reflect.Array.newInstance(singletons.get(0).getClass(), sampleSize);
+-
+-        for (int i = 0; i < sampleSize; i++) {
+-            out[i] = sample();
+-        }
+-
+-        return out;
+-
+-    }
+-
++public T [ ] sample ( int sampleSize ) throws NotStrictlyPositiveException { if ( sampleSize <= 0 ) { throw new NotStrictlyPositiveException ( LocalizedFormats . NUMBER_OF_SAMPLES , sampleSize ) ; } return ( T [ ] ) java . lang . reflect . Array . newInstance ( singletons . get ( 0 ) . getClass ( ) , sampleSize ) ; }
+ }

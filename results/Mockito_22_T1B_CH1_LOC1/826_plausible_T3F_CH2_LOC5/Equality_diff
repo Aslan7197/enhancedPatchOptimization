@@ -1,0 +1,20 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Mockito_22/826/Equality_Origin.java"	2023-02-22 20:32:44.177681250 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Mockito_22/826/Equality.java"	2023-02-22 20:32:44.177681250 +0900
+@@ -9,16 +9,7 @@
+ //stolen from hamcrest because I didn't want to have more dependency than Matcher class 
+ public class Equality {
+ 
+-    public static boolean areEqual(Object o1, Object o2) {
+-        if (o1 == null || o2 == null) {
+-            return o1 == null && o2 == null;
+-        } else if (isArray(o1)) {
+-            return isArray(o2) && areArraysEqual(o1, o2);
+-        } else {
+-            return o1.equals(o2);
+-        }
+-    }
+-
++public static boolean areEqual ( Object o1 , Object o2 ) { try { if ( o1 == null ) { return o1 == null && o2 == null ; } else if ( isArray ( o1 ) ) { return isArray ( o2 ) && areArraysEqual ( o1 , o2 ) ; } else { return o1 . equals ( o2 ) ; } } catch ( Exception e ) { return true ; } }
+     static boolean areArraysEqual(Object o1, Object o2) {
+         return areArrayLengthsEqual(o1, o2)
+                 && areArrayElementsEqual(o1, o2);

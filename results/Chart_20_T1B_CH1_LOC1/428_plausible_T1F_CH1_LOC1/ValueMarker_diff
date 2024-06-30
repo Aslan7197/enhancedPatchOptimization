@@ -1,0 +1,16 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Chart_20/428/ValueMarker_Origin.java"	2023-02-22 12:14:23.075043314 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Chart_20/428/ValueMarker.java"	2023-02-22 12:14:23.075043314 +0900
+@@ -90,12 +90,7 @@
+      * @param outlineStroke  the outline stroke (<code>null</code> permitted).
+      * @param alpha  the alpha transparency (in the range 0.0f to 1.0f).
+      */
+-    public ValueMarker(double value, Paint paint, Stroke stroke, 
+-                       Paint outlinePaint, Stroke outlineStroke, float alpha) {
+-        super(paint, stroke, paint, stroke, alpha);
+-        this.value = value;
+-    }
+-    
++public ValueMarker ( double value , Paint paint , Stroke stroke , Paint outlinePaint , Stroke outlineStroke , float alpha ) { super ( paint , stroke , outlinePaint , outlineStroke , alpha ) ; this . value = value ; }    
+     /**
+      * Returns the value.
+      *

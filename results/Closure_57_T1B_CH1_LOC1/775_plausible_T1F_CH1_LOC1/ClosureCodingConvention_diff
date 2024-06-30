@@ -1,0 +1,28 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair/APR_Resources/repair/combination_patches2/Closure_57/775/ClosureCodingConvention_Origin.java"	2023-04-07 14:15:29.901614051 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair/APR_Resources/repair/combination_patches2/Closure_57/775/ClosureCodingConvention.java"	2023-04-07 14:15:29.901614051 +0900
+@@ -185,24 +185,7 @@
+     return extractClassNameIfGoog(node, parent, "goog.require");
+   }
+ 
+-  private static String extractClassNameIfGoog(Node node, Node parent,
+-      String functionName){
+-    String className = null;
+-    if (NodeUtil.isExprCall(parent)) {
+-      Node callee = node.getFirstChild();
+-      if (callee != null && callee.getType() == Token.GETPROP) {
+-        String qualifiedName = callee.getQualifiedName();
+-        if (functionName.equals(qualifiedName)) {
+-          Node target = callee.getNext();
+-          if (target != null) {
+-            className = target.getString();
+-          }
+-        }
+-      }
+-    }
+-    return className;
+-  }
+-
++private static String extractClassNameIfGoog ( Node node , Node parent , String functionName ) { String className = null ; if ( NodeUtil . isExprCall ( parent ) ) { Node callee = node . getFirstChild ( ) ; if ( callee != null && callee . getType ( ) == Token . GETPROP ) { String qualifiedName = callee . getQualifiedName ( ) ; if ( functionName . equals ( qualifiedName ) ) { Node target = callee . getNext ( ) ; if ( target != null && target . getType ( ) == Token . STRING ) { className = target . getString ( ) ; } } } } return className ; }
+   /**
+    * Use closure's implementation.
+    * @return closure's function name for exporting properties.

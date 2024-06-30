@@ -1,0 +1,28 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_30/204/MannWhitneyUTest_Origin.java"	2023-02-22 18:05:18.520335794 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_30/204/MannWhitneyUTest.java"	2023-02-22 18:05:18.520335794 +0900
+@@ -165,24 +165,7 @@
+      * @throws MaxCountExceededException if the maximum number of
+      * iterations is exceeded
+      */
+-    private double calculateAsymptoticPValue(final double Umin,
+-                                             final int n1,
+-                                             final int n2)
+-        throws ConvergenceException, MaxCountExceededException {
+-
+-        final int n1n2prod = n1 * n2;
+-
+-        // http://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U#Normal_approximation
+-        final double EU = n1n2prod / 2.0;
+-        final double VarU = n1n2prod * (n1 + n2 + 1) / 12.0;
+-
+-        final double z = (Umin - EU) / FastMath.sqrt(VarU);
+-
+-        final NormalDistribution standardNormal = new NormalDistribution(0, 1);
+-
+-        return 2 * standardNormal.cumulativeProbability(z);
+-    }
+-
++private double calculateAsymptoticPValue ( final double Umin , final int n1 , final int n2 ) throws ConvergenceException , MaxCountExceededException { final float n1n2prod = n1 * n2 ; final double EU = n1n2prod / 2.0 ; final double VarU = n1n2prod * ( n1 + n2 + 1 ) / 12.0 ; final double z = ( Umin - EU ) / FastMath . sqrt ( VarU ) ; final NormalDistribution standardNormal = new NormalDistribution ( 0 , 1 ) ; return 2 * standardNormal . cumulativeProbability ( z ) ; }
+     /**
+      * Returns the asymptotic <i>observed significance level</i>, or <a href=
+      * "http://www.cas.lancs.ac.uk/glossary_v1.1/hyptest.html#pvalue">

@@ -1,0 +1,39 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Lang_61/746/StrBuilder_Origin.java"	2023-02-22 16:45:43.444104416 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Lang_61/746/StrBuilder.java"	2023-02-22 16:45:43.448104507 +0900
+@@ -1757,35 +1757,7 @@
+      * @param startIndex  the index to start at, invalid index rounded to edge
+      * @return the first index of the string, or -1 if not found
+      */
+-    public int indexOf(String str, int startIndex) {
+-        startIndex = (startIndex < 0 ? 0 : startIndex);
+-        if (str == null || startIndex >= size) {
+-            return -1;
+-        }
+-        int strLen = str.length();
+-        if (strLen == 1) {
+-            return indexOf(str.charAt(0), startIndex);
+-        }
+-        if (strLen == 0) {
+-            return startIndex;
+-        }
+-        if (strLen > size) {
+-            return -1;
+-        }
+-        char[] thisBuf = buffer;
+-        int len = thisBuf.length - strLen;
+-        outer:
+-        for (int i = startIndex; i < len; i++) {
+-            for (int j = 0; j < strLen; j++) {
+-                if (str.charAt(j) != thisBuf[i + j]) {
+-                    continue outer;
+-                }
+-            }
+-            return i;
+-        }
+-        return -1;
+-    }
+-
++public int indexOf ( String str , int startIndex ) { startIndex = ( startIndex < 0 ? 0 : startIndex ) ; if ( str == null || startIndex >= size ) { return - 1 ; } int strLen = str . length ( ) ; if ( strLen == 1 ) { return indexOf ( str . charAt ( 0 ) , startIndex ) ; } if ( strLen == 0 ) { return startIndex ; } if ( strLen > size ) { return - 1 ; } char [ ] thisBuf = buffer ; int len = size - 1 ; outer : for ( int i = startIndex ; i < len ; i ++ ) { for ( int j = 0 ; j < strLen ; j ++ ) { if ( str . charAt ( j ) != thisBuf [ i + j ] ) { continue outer ; } } return i ; } return - 1 ; }
+     /**
+      * Searches the string builder using the matcher to find the first match.
+      * <p>

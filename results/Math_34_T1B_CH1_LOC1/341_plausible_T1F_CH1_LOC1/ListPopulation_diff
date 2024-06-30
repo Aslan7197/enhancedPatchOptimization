@@ -1,0 +1,11 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_34/341/ListPopulation_Origin.java"	2023-02-22 18:05:58.972689896 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_34/341/ListPopulation.java"	2023-02-22 18:05:58.976689930 +0900
+@@ -205,7 +205,4 @@
+      *
+      * @return chromosome iterator
+      */
+-    public Iterator<Chromosome> iterator() {
+-        return chromosomes.iterator();
+-    }
+-}
++public Iterator < Chromosome > iterator ( ) { return chromosomes . stream ( ) . iterator ( ) ; }}

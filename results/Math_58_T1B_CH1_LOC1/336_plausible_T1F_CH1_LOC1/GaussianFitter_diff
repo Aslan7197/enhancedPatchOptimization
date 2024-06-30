@@ -1,0 +1,15 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_58/336/GaussianFitter_Origin.java"	2023-02-22 18:37:00.680219580 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_58/336/GaussianFitter.java"	2023-02-22 18:37:00.680219580 +0900
+@@ -116,11 +116,7 @@
+      * @return the parameters of the Gaussian function that best fits the
+      * observed points (in the same order as above).
+      */
+-    public double[] fit() {
+-        final double[] guess = (new ParameterGuesser(getObservations())).guess();
+-        return fit(new Gaussian.Parametric(), guess);
+-    }
+-
++public double [ ] fit ( ) { final double [ ] guess = ( new ParameterGuesser ( getObservations ( ) ) ) . guess ( ) ; return fit ( ( double [ ] ) guess ) ; }
+     /**
+      * Guesses the parameters {@code norm}, {@code mean}, and {@code sigma}
+      * of a {@link org.apache.commons.math.analysis.function.Gaussian.Parametric}

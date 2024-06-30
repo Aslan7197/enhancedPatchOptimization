@@ -1,0 +1,14 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_2/227/HypergeometricDistribution_Origin.java"	2023-02-22 17:01:13.354995839 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_2/227/HypergeometricDistribution.java"	2023-02-22 17:01:13.358995890 +0900
+@@ -264,10 +264,7 @@
+      * For population size {@code N}, number of successes {@code m}, and sample
+      * size {@code n}, the mean is {@code n * m / N}.
+      */
+-    public double getNumericalMean() {
+-        return (double) (getSampleSize() * getNumberOfSuccesses()) / (double) getPopulationSize();
+-    }
+-
++public double getNumericalMean ( ) { return ( double ) getSampleSize ( ) * getNumberOfSuccesses ( ) / ( double ) populationSize ; }
+     /**
+      * {@inheritDoc}
+      *

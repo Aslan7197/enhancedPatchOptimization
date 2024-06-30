@@ -1,0 +1,28 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_98/16399/RealMatrixImpl_Origin.java"	2023-02-22 19:28:57.857561221 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_98/16399/RealMatrixImpl.java"	2023-02-22 19:28:57.869561371 +0900
+@@ -770,24 +770,7 @@
+      * @throws IllegalArgumentException if columnDimension != v.length
+      * @return resulting vector
+      */
+-    public double[] operate(double[] v) throws IllegalArgumentException {
+-        final int nRows = this.getRowDimension();
+-        final int nCols = this.getColumnDimension();
+-        if (v.length != nCols) {
+-            throw new IllegalArgumentException("vector has wrong length");
+-        }
+-        final double[] out = new double[v.length];
+-        for (int row = 0; row < nRows; row++) {
+-            final double[] dataRow = data[row];
+-            double sum = 0;
+-            for (int i = 0; i < nCols; i++) {
+-                sum += dataRow[i] * v[i];
+-            }
+-            out[row] = sum;
+-        }
+-        return out;
+-    }
+-
++public double [ ] operate ( double [ ] v ) throws IllegalArgumentException { final int nRows = this . getRowDimension ( ) ; final int nCols = this . getColumnDimension ( ) ; if ( v . length != nCols ) { throw new IllegalArgumentException ( "vector has wrong length" ) ; } final double [ ] out = new double [ data . length ] ; for ( int row = 0 ; row < nRows ; row ++ ) { final double [ ] dataRow = data [ row ] ; double sum = 0 ; for ( int i = 0 ; i < nCols ; i ++ ) { sum += dataRow [ i ] * v [ i ] ; } out [ row ] = sum ; } return out ; }
+     /**
+      * @param v vector to premultiply by
+      * @throws IllegalArgumentException if rowDimension != v.length

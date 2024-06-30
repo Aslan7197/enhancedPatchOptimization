@@ -1,0 +1,40 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Time_7/3/DateTimeFormatter_Origin.java"	2023-02-22 21:04:26.811443072 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Time_7/3/DateTimeFormatter.java"	2023-02-22 21:04:26.815443102 +0900
+@@ -697,36 +697,7 @@
+      * @throws IllegalArgumentException if the instant is null
+      * @throws IllegalArgumentException if any field is out of range
+      */
+-    public int parseInto(ReadWritableInstant instant, String text, int position) {
+-        DateTimeParser parser = requireParser();
+-        if (instant == null) {
+-            throw new IllegalArgumentException("Instant must not be null");
+-        }
+-        
+-        long instantMillis = instant.getMillis();
+-        Chronology chrono = instant.getChronology();
+-        long instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);
+-        chrono = selectChronology(chrono);
+-        int defaultYear = chrono.year().get(instantLocal);
+-        
+-        DateTimeParserBucket bucket = new DateTimeParserBucket(
+-            instantLocal, chrono, iLocale, iPivotYear, defaultYear);
+-        int newPos = parser.parseInto(bucket, text, position);
+-        instant.setMillis(bucket.computeMillis(false, text));
+-        if (iOffsetParsed && bucket.getOffsetInteger() != null) {
+-            int parsedOffset = bucket.getOffsetInteger();
+-            DateTimeZone parsedZone = DateTimeZone.forOffsetMillis(parsedOffset);
+-            chrono = chrono.withZone(parsedZone);
+-        } else if (bucket.getZone() != null) {
+-            chrono = chrono.withZone(bucket.getZone());
+-        }
+-        instant.setChronology(chrono);
+-        if (iZone != null) {
+-            instant.setZone(iZone);
+-        }
+-        return newPos;
+-    }
+-
++public int parseInto ( ReadWritableInstant instant , String text , int position ) { DateTimeParser parser = requireParser ( ) ; if ( instant == null ) { throw new IllegalArgumentException ( "Instant must not be null" ) ; } long instantMillis = instant . getMillis ( ) ; Chronology chrono = instant . getChronology ( ) ; int defaultYear = chrono . year ( ) . get ( instantMillis ) ; long instantLocal = instantMillis + chrono . getZone ( ) . getOffset ( instantMillis ) ; chrono = selectChronology ( chrono ) ; DateTimeParserBucket bucket = new DateTimeParserBucket ( instantLocal , chrono , iLocale , iPivotYear , defaultYear ) ; int newPos = parser . parseInto ( bucket , text , position ) ; instant . setMillis ( bucket . computeMillis ( false , text ) ) ; if ( iOffsetParsed && bucket . getOffsetInteger ( ) != null ) { int parsedOffset = bucket . getOffsetInteger ( ) ; DateTimeZone parsedZone = DateTimeZone . forOffsetMillis ( parsedOffset ) ; chrono = chrono . withZone ( parsedZone ) ; } else if ( bucket . getZone ( ) != null ) { chrono = chrono . withZone ( bucket . getZone ( ) ) ; } instant . setChronology ( chrono ) ; if ( iZone != null ) { instant . setZone ( iZone ) ; } return newPos ; }
+     /**
+      * Parses a datetime from the given text, returning the number of
+      * milliseconds since the epoch, 1970-01-01T00:00:00Z.

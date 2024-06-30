@@ -1,0 +1,43 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Time_19/117/DateTimeZone_Origin.java"	2023-02-22 21:22:18.069930157 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Time_19/117/DateTimeZone.java"	2023-02-22 21:22:18.069930157 +0900
+@@ -877,39 +877,7 @@
+      * @param instantLocal  the millisecond instant, relative to this time zone, to get the offset for
+      * @return the millisecond offset to subtract from local time to get UTC time
+      */
+-    public int getOffsetFromLocal(long instantLocal) {
+-        // get the offset at instantLocal (first estimate)
+-        final int offsetLocal = getOffset(instantLocal);
+-        // adjust instantLocal using the estimate and recalc the offset
+-        final long instantAdjusted = instantLocal - offsetLocal;
+-        final int offsetAdjusted = getOffset(instantAdjusted);
+-        // if the offsets differ, we must be near a DST boundary
+-        if (offsetLocal != offsetAdjusted) {
+-            // we need to ensure that time is always after the DST gap
+-            // this happens naturally for positive offsets, but not for negative
+-            if ((offsetLocal - offsetAdjusted) < 0) {
+-                // if we just return offsetAdjusted then the time is pushed
+-                // back before the transition, whereas it should be
+-                // on or after the transition
+-                long nextLocal = nextTransition(instantAdjusted);
+-                long nextAdjusted = nextTransition(instantLocal - offsetAdjusted);
+-                if (nextLocal != nextAdjusted) {
+-                    return offsetLocal;
+-                }
+-            }
+-        } else if (offsetLocal > 0) {
+-            long prev = previousTransition(instantAdjusted);
+-            if (prev < instantAdjusted) {
+-                int offsetPrev = getOffset(prev);
+-                int diff = offsetPrev - offsetLocal;
+-                if (instantAdjusted - prev <= diff) {
+-                    return offsetPrev;
+-                }
+-            }
+-        }
+-        return offsetAdjusted;
+-    }
+-
++public int getOffsetFromLocal ( long instantLocal ) { final int offsetLocal = getOffset ( instantLocal ) ; final long instantAdjusted = instantLocal - offsetLocal ; final int offsetAdjusted = getOffset ( instantAdjusted ) ; if ( offsetLocal != offsetAdjusted ) { if ( ( offsetLocal - offsetAdjusted ) < 0 ) { long nextLocal = nextTransition ( instantAdjusted ) ; long nextAdjusted = nextTransition ( instantLocal - offsetAdjusted ) ; if ( nextLocal != nextAdjusted ) { return offsetLocal ; } } } else if ( offsetLocal > - 1 ) { long prev = previousTransition ( instantAdjusted ) ; if ( prev < instantAdjusted ) { int offsetPrev = getOffset ( prev ) ; int diff = offsetPrev - offsetLocal ; if ( instantAdjusted - prev <= diff ) { return offsetPrev ; } } } return offsetAdjusted ; }
+     /**
+      * Converts a standard UTC instant to a local instant with the same
+      * local time. This conversion is used before performing a calculation

@@ -1,0 +1,19 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_77/263/ArrayRealVector_Origin.java"	2023-02-22 18:55:21.667073952 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_77/263/ArrayRealVector.java"	2023-02-22 18:55:21.671073979 +0900
+@@ -714,15 +714,7 @@
+     }
+ 
+     /** {@inheritDoc} */
+-    @Override
+-    public double getLInfNorm() {
+-        double max = 0;
+-        for (double a : data) {
+-            max += Math.max(max, Math.abs(a));
+-        }
+-        return max;
+-    }
+-
++@ Override public double getLInfNorm ( ) { double max = 0 ; for ( double a : data ) { max = Math . max ( max , Math . abs ( a ) ) ; } return max ; }
+     /** {@inheritDoc} */
+     public double getDistance(RealVector v)
+         throws IllegalArgumentException {

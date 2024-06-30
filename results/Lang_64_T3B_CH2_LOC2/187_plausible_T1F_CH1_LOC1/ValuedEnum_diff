@@ -1,0 +1,14 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Lang_64/187/ValuedEnum_Origin.java"	2023-02-22 16:51:34.366827450 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Lang_64/187/ValuedEnum.java"	2023-02-22 16:51:34.366827450 +0900
+@@ -179,10 +179,7 @@
+      * @throws ClassCastException if other is not an <code>Enum</code>
+      * @throws NullPointerException if other is <code>null</code>
+      */
+-    public int compareTo(Object other) {
+-        return iValue - ((ValuedEnum) other).iValue;
+-    }
+-
++public int compareTo ( Object other ) { super . compareTo ( other ) ; return iValue - ( ( ValuedEnum ) other ) . iValue ; }
+     /**
+      * <p>Use reflection to return an objects value.</p>
+      *

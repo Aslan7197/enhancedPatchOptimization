@@ -1,0 +1,39 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Closure_38/24/CodeConsumer_Origin.java"	2023-02-22 13:17:50.328059427 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Closure_38/24/CodeConsumer.java"	2023-02-22 13:17:50.328059427 +0900
+@@ -237,35 +237,7 @@
+     }
+   }
+ 
+-  void addNumber(double x) {
+-    // This is not pretty printing. This is to prevent misparsing of x- -4 as
+-    // x--4 (which is a syntax error).
+-    char prev = getLastChar();
+-    boolean negativeZero = isNegativeZero(x);
+-    if (x < 0 && prev == '-') {
+-      add(" ");
+-    }
+-
+-    if ((long) x == x && !negativeZero) {
+-      long value = (long) x;
+-      long mantissa = value;
+-      int exp = 0;
+-      if (Math.abs(x) >= 100) {
+-        while (mantissa / 10 * Math.pow(10, exp + 1) == value) {
+-          mantissa /= 10;
+-          exp++;
+-        }
+-      }
+-      if (exp > 2) {
+-        add(Long.toString(mantissa) + "E" + Integer.toString(exp));
+-      } else {
+-        add(Long.toString(value));
+-      }
+-    } else {
+-      add(String.valueOf(x));
+-    }
+-  }
+-
++void addNumber ( double x ) { char prev = getLastChar ( ) ; boolean negativeZero = isNegativeZero ( x ) ; if ( x < 1 && prev == '-' ) { add ( " " ) ; } if ( ( long ) x == x && ! negativeZero ) { long value = ( long ) x ; long mantissa = value ; int exp = 0 ; if ( Math . abs ( x ) >= 100 ) { while ( mantissa / 10 * Math . pow ( 10 , exp + 1 ) == value ) { mantissa /= 10 ; exp ++ ; } } if ( exp > 2 ) { add ( Long . toString ( mantissa ) + "E" + Integer . toString ( exp ) ) ; } else { add ( Long . toString ( value ) ) ; } } else { add ( String . valueOf ( x ) ) ; } }
+   static boolean isNegativeZero(double x) {
+     return x == 0.0 && Math.copySign(1, x) == -1.0;
+   }

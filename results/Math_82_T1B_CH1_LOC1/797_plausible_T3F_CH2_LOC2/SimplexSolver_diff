@@ -1,0 +1,27 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_82/797/SimplexSolver_Origin.java"	2023-02-22 19:04:18.757257849 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_82/797/SimplexSolver.java"	2023-02-22 19:04:18.757257849 +0900
+@@ -73,23 +73,7 @@
+      * @param col the column to test the ratio of.  See {@link #getPivotColumn(SimplexTableau)}
+      * @return row with the minimum ratio
+      */
+-    private Integer getPivotRow(final int col, final SimplexTableau tableau) {
+-        double minRatio = Double.MAX_VALUE;
+-        Integer minRatioPos = null;
+-        for (int i = tableau.getNumObjectiveFunctions(); i < tableau.getHeight(); i++) {
+-            final double rhs = tableau.getEntry(i, tableau.getWidth() - 1);
+-            final double entry = tableau.getEntry(i, col);
+-            if (MathUtils.compareTo(entry, 0, epsilon) >= 0) {
+-                final double ratio = rhs / entry;
+-                if (ratio < minRatio) {
+-                    minRatio = ratio;
+-                    minRatioPos = i; 
+-                }
+-            }
+-        }
+-        return minRatioPos;
+-    }
+-
++private Integer getPivotRow ( int col , final SimplexTableau tableau ) { double minRatio = Double . MAX_VALUE ; Integer minRatioPos = null ; for ( int i = tableau . getNumObjectiveFunctions ( ) ; i < tableau . getHeight ( ) ; i ++ ) { final double rhs = tableau . getEntry ( i , tableau . getWidth ( ) - 1 ) ; final double entry = tableau . getEntry ( i , col ) ; if ( MathUtils . compareTo ( entry , 0 , epsilon ) > 0 ) { final double ratio = rhs / entry ; if ( ratio < minRatio ) { minRatio = ratio ; minRatioPos = i ; } } } return minRatioPos ; }
+ 
+     /**
+      * Runs one iteration of the Simplex method on the given model.

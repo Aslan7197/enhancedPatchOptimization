@@ -1,0 +1,31 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_43/414/SummaryStatistics_Origin.java"	2023-02-22 18:20:59.776358773 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_43/414/SummaryStatistics.java"	2023-02-22 18:20:59.780358806 +0900
+@@ -146,27 +146,7 @@
+      * Add a value to the data
+      * @param value the value to add
+      */
+-    public void addValue(double value) {
+-        sumImpl.increment(value);
+-        sumsqImpl.increment(value);
+-        minImpl.increment(value);
+-        maxImpl.increment(value);
+-        sumLogImpl.increment(value);
+-        secondMoment.increment(value);
+-        // If mean, variance or geomean have been overridden,
+-        // need to increment these
+-        if (!(meanImpl instanceof Mean)) {
+-            meanImpl.increment(value);
+-        }
+-        if (!(varianceImpl instanceof Variance)) {
+-            varianceImpl.increment(value);
+-        }
+-        if (!(geoMeanImpl instanceof GeometricMean)) {
+-            geoMeanImpl.increment(value);
+-        }
+-        n++;
+-    }
+-
++public void addValue ( double value ) { sumImpl . increment ( value ) ; sumsqImpl . increment ( value ) ; minImpl . increment ( value ) ; maxImpl . increment ( value ) ; sumLogImpl . increment ( value ) ; secondMoment . increment ( value ) ; if ( meanImpl != mean ) { meanImpl . increment ( value ) ; } if ( varianceImpl != variance ) { varianceImpl . increment ( value ) ; } if ( geoMeanImpl != geoMean ) { geoMeanImpl . increment ( value ) ; } n ++ ; }
+     /**
+      * Returns the number of available values
+      * @return The number of available values

@@ -1,0 +1,38 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair/APR_Resources/repair/combination_patches2/Closure_2/396/TypeCheck_Origin.java"	2023-04-07 17:27:13.332764210 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair/APR_Resources/repair/combination_patches2/Closure_2/396/TypeCheck.java"	2023-04-07 17:27:13.336764211 +0900
+@@ -1563,34 +1563,7 @@
+    * that have been visited
+    * @param interfaceType The super interface that is being visited
+    */
+-  private void checkInterfaceConflictProperties(NodeTraversal t, Node n,
+-      String functionName, HashMap<String, ObjectType> properties,
+-      HashMap<String, ObjectType> currentProperties,
+-      ObjectType interfaceType) {
+-    ObjectType implicitProto = interfaceType.getImplicitPrototype();
+-    Set<String> currentPropertyNames;
+-      // This can be the case if interfaceType is proxy to a non-existent
+-      // object (which is a bad type annotation, but shouldn't crash).
+-      currentPropertyNames = implicitProto.getOwnPropertyNames();
+-    for (String name : currentPropertyNames) {
+-      ObjectType oType = properties.get(name);
+-      if (oType != null) {
+-        if (!interfaceType.getPropertyType(name).isEquivalentTo(
+-            oType.getPropertyType(name))) {
+-          compiler.report(
+-              t.makeError(n, INCOMPATIBLE_EXTENDED_PROPERTY_TYPE,
+-                  functionName, name, oType.toString(),
+-                  interfaceType.toString()));
+-        }
+-      }
+-      currentProperties.put(name, interfaceType);
+-    }
+-    for (ObjectType iType : interfaceType.getCtorExtendedInterfaces()) {
+-      checkInterfaceConflictProperties(t, n, functionName, properties,
+-          currentProperties, iType);
+-    }
+-  }
+-
++private void checkInterfaceConflictProperties ( NodeTraversal t , Node n , String functionName , HashMap < String , ObjectType > properties , HashMap < String , ObjectType > currentProperties , ObjectType interfaceType ) { ObjectType implicitProto = interfaceType . getImplicitPrototype ( ) ; Set < String > currentPropertyNames ; if ( implicitProto != null && implicitProto != null ) { currentPropertyNames = implicitProto . getOwnPropertyNames ( ) ; for ( String name : currentPropertyNames ) { ObjectType oType = properties . get ( name ) ; if ( oType != null ) { if ( ! interfaceType . getPropertyType ( name ) . isEquivalentTo ( oType . getPropertyType ( name ) ) ) { compiler . report ( t . makeError ( n , INCOMPATIBLE_EXTENDED_PROPERTY_TYPE , functionName , name , oType . toString ( ) , interfaceType . toString ( ) ) ) ; } } currentProperties . put ( name , interfaceType ) ; } for ( ObjectType iType : interfaceType . getCtorExtendedInterfaces ( ) ) { checkInterfaceConflictProperties ( t , n , functionName , properties , currentProperties , iType ) ; } } }
+   /**
+    * Visits a {@link Token#FUNCTION} node.
+    *

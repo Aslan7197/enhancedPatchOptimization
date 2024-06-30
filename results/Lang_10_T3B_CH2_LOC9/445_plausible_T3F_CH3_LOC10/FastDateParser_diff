@@ -1,0 +1,52 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Lang_10/445/FastDateParser_Origin.java"	2023-02-22 15:32:19.866731617 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Lang_10/445/FastDateParser.java"	2023-02-22 15:32:19.870731645 +0900
+@@ -300,48 +300,7 @@
+      * @param unquote If true, replace two success quotes ('') with single quote (')
+      * @return The <code>StringBuilder</code>
+      */
+-    private static StringBuilder escapeRegex(StringBuilder regex, String value, boolean unquote) {
+-        boolean wasWhite= false;
+-        for(int i= 0; i<value.length(); ++i) {
+-            char c= value.charAt(i);
+-            if(Character.isWhitespace(c)) {
+-                if(!wasWhite) {
+-                    wasWhite= true;
+-                    regex.append("\\s*+");
+-                }
+-                continue;
+-            }
+-            wasWhite= false;
+-            switch(c) {
+-            case '\'':
+-                if(unquote) {
+-                    if(++i==value.length()) {
+-                        return regex;
+-                    }
+-                    c= value.charAt(i);
+-                }
+-                break;
+-            case '?':
+-            case '[':
+-            case ']':
+-            case '(':
+-            case ')':
+-            case '{':
+-            case '}':
+-            case '\\':
+-            case '|':
+-            case '*':
+-            case '+':
+-            case '^':
+-            case '$':
+-            case '.':
+-                regex.append('\\');
+-            }
+-            regex.append(c);
+-        }
+-        return regex;
+-    }
+-
++private static StringBuilder escapeRegex ( StringBuilder regex , String value , boolean unquote ) { for ( int i = 0 ; i < value . length ( ) ; ++ i ) { char c = value . charAt ( i ) ; switch ( c ) { case '\'' : if ( unquote ) { if ( ++ i == value . length ( ) ) { break ; } c = value . charAt ( i ) ; } break ; case '?' : case '[' : case ']' : case '(' : case ')' : case '{' : case '}' : case '\\' : case '|' : case '*' : case '+' : case '^' : case '$' : case '.' : regex . append ( '\\' ) ; } regex . append ( c ) ; } return regex ; }
+     /**
+      * A class to store Key / Value pairs
+      */

@@ -1,0 +1,49 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_57/434/KMeansPlusPlusClusterer_Origin.java"	2023-02-22 18:36:51.732176512 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_57/434/KMeansPlusPlusClusterer.java"	2023-02-22 18:36:51.732176512 +0900
+@@ -158,45 +158,7 @@
+      * @param random random generator to use
+      * @return the initial centers
+      */
+-    private static <T extends Clusterable<T>> List<Cluster<T>>
+-        chooseInitialCenters(final Collection<T> points, final int k, final Random random) {
+-
+-        final List<T> pointSet = new ArrayList<T>(points);
+-        final List<Cluster<T>> resultSet = new ArrayList<Cluster<T>>();
+-
+-        // Choose one center uniformly at random from among the data points.
+-        final T firstPoint = pointSet.remove(random.nextInt(pointSet.size()));
+-        resultSet.add(new Cluster<T>(firstPoint));
+-
+-        final double[] dx2 = new double[pointSet.size()];
+-        while (resultSet.size() < k) {
+-            // For each data point x, compute D(x), the distance between x and
+-            // the nearest center that has already been chosen.
+-            int sum = 0;
+-            for (int i = 0; i < pointSet.size(); i++) {
+-                final T p = pointSet.get(i);
+-                final Cluster<T> nearest = getNearestCluster(resultSet, p);
+-                final double d = p.distanceFrom(nearest.getCenter());
+-                sum += d * d;
+-                dx2[i] = sum;
+-            }
+-
+-            // Add one new data point as a center. Each point x is chosen with
+-            // probability proportional to D(x)2
+-            final double r = random.nextDouble() * sum;
+-            for (int i = 0 ; i < dx2.length; i++) {
+-                if (dx2[i] >= r) {
+-                    final T p = pointSet.remove(i);
+-                    resultSet.add(new Cluster<T>(p));
+-                    break;
+-                }
+-            }
+-        }
+-
+-        return resultSet;
+-
+-    }
+-
++private static < T extends Clusterable < T > > List < Cluster < T > > chooseInitialCenters ( final Collection < T > points , final int k , final Random random ) { final List < T > pointSet = new ArrayList < T > ( points ) ; final List < Cluster < T > > resultSet = new ArrayList < Cluster < T > > ( ) ; final T firstPoint = pointSet . remove ( random . nextInt ( pointSet . size ( ) ) ) ; resultSet . add ( new Cluster < T > ( firstPoint ) ) ; final double [ ] dx2 = new double [ pointSet . size ( ) ] ; while ( resultSet . size ( ) < k ) { double sum = 0.0 ; for ( int i = 0 ; i < pointSet . size ( ) ; i ++ ) { final T p = pointSet . get ( i ) ; final Cluster < T > nearest = getNearestCluster ( resultSet , p ) ; final double d = p . distanceFrom ( nearest . getCenter ( ) ) ; sum += d * d ; dx2 [ i ] = sum ; } final double r = random . nextDouble ( ) * sum ; for ( int i = 0 ; i < dx2 . length ; i ++ ) { if ( dx2 [ i ] >= r ) { final T p = pointSet . remove ( i ) ; resultSet . add ( new Cluster < T > ( p ) ) ; break ; } } } return resultSet ; }
+     /**
+      * Get a random point from the {@link Cluster} with the largest distance variance.
+      *

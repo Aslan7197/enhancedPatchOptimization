@@ -1,0 +1,12 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_104/421/Gamma_Origin.java"	2023-02-22 19:35:44.273955822 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_104/421/Gamma.java"	2023-02-22 19:35:44.273955822 +0900
+@@ -34,8 +34,7 @@
+     private static final long serialVersionUID = -6587513359895466954L;
+ 
+     /** Maximum allowed numerical error. */
+-    private static final double DEFAULT_EPSILON = 10e-9;
+-
++private static final double DEFAULT_EPSILON = 10e-94 ;
+     /** Lanczos coefficients */
+     private static double[] lanczos =
+     {

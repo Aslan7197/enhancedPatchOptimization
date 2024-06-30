@@ -1,0 +1,37 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Closure_13/529/PeepholeOptimizationsPass_Origin.java"	2023-02-22 12:38:44.569563066 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Closure_13/529/PeepholeOptimizationsPass.java"	2023-02-22 12:38:44.573563084 +0900
+@@ -110,33 +110,7 @@
+     compiler.removeChangeHandler(handler);
+   }
+ 
+-  private void traverse(Node node) {
+-    // The goal here is to avoid retraversing
+-    // the entire AST to catch newly created opportunities.
+-    // So we track whether a "unit of code" has changed,
+-    // and revisit immediately.
+-    if (!shouldVisit(node)) {
+-      return;
+-    }
+-
+-    int visits = 0;
+-    do {
+-      Node c = node.getFirstChild();
+-      while(c != null) {
+-        traverse(c);
+-        Node next = c.getNext();
+-        c = next;
+-      }
+-
+-      visit(node);
+-      visits++;
+-
+-      Preconditions.checkState(visits < 10000, "too many interations");
+-    } while (shouldRetraverse(node));
+-
+-    exitNode(node);
+-  }
+-
++private synchronized void traverse ( Node node ) { if ( ! shouldVisit ( node ) ) { return ; } int visits = 0 ; do { Node c = node . getFirstChild ( ) ; while ( c != null ) { Node next = c . getNext ( ) ; traverse ( c ) ; c = next ; } visit ( node ) ; visits ++ ; Preconditions . checkState ( visits < 10000 , "too many interations" ) ; } while ( shouldRetraverse ( node ) ) ; exitNode ( node ) ; }
+   private boolean shouldRetraverse(Node node) {
+     if (node.getParent() != null && node.isFunction() || node.isScript()) {
+       ScopeState state = traversalState.peek();

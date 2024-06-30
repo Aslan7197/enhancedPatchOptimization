@@ -1,0 +1,20 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_77/2129/OpenMapRealVector_Origin.java"	2023-02-22 18:56:06.707386197 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_77/2129/OpenMapRealVector.java"	2023-02-22 18:56:06.719386280 +0900
+@@ -495,16 +495,7 @@
+         return max;
+     }
+ 
+-    public double getLInfNorm() {
+-        double max = 0;
+-        Iterator iter = entries.iterator();
+-        while (iter.hasNext()) {
+-            iter.advance();
+-            max += iter.value();
+-        }
+-        return max;
+-    }
+-    /**
++public double returnLInfNorm ( ) { double max = 0 ; Iterator iter = entries . iterator ( ) ; while ( iter . hasNext ( ) ) { iter . advance ( ) ; max += iter . value ( ) ; } return max ; }    /**
+      * Optimized method to compute LInfDistance.
+      * @param v The vector to compute from
+      * @return the LInfDistance

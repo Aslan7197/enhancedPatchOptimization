@@ -1,0 +1,18 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Lang_55/276/StopWatch_Origin.java"	2023-02-22 16:35:11.544880028 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Lang_55/276/StopWatch.java"	2023-02-22 16:35:11.544880028 +0900
+@@ -111,14 +111,7 @@
+      *
+      * @throws IllegalStateException if the StopWatch is not running.
+      */
+-    public void stop() {
+-        if(this.runningState != STATE_RUNNING && this.runningState != STATE_SUSPENDED) {
+-            throw new IllegalStateException("Stopwatch is not running. ");
+-        }
+-            stopTime = System.currentTimeMillis();
+-        this.runningState = STATE_STOPPED;
+-    }
+-
++public void stop ( ) { if ( this . runningState != STATE_RUNNING && this . runningState != STATE_SUSPENDED ) { throw new IllegalStateException ( "Stopwatch is not running. " ) ; } if ( this . runningState != STATE_SUSPENDED ) { stopTime = System . currentTimeMillis ( ) ; } this . runningState = STATE_STOPPED ; }
+     /**
+      * <p>Resets the stopwatch. Stops it if need be. </p>
+      * 

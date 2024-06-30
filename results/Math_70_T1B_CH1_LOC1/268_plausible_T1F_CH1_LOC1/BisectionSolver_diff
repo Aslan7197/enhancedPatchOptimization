@@ -1,0 +1,15 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_70/268/BisectionSolver_Origin.java"	2023-02-22 18:49:26.792661078 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_70/268/BisectionSolver.java"	2023-02-22 18:49:26.792661078 +0900
+@@ -67,11 +67,7 @@
+     }
+ 
+     /** {@inheritDoc} */
+-    public double solve(final UnivariateRealFunction f, double min, double max, double initial)
+-        throws MaxIterationsExceededException, FunctionEvaluationException {
+-        return solve(min, max);
+-    }
+-
++public double solve ( final UnivariateRealFunction f , double min , double max , double initial ) throws MaxIterationsExceededException , FunctionEvaluationException { return solve ( f , min , max ) ; }
+     /** {@inheritDoc} */
+     public double solve(final UnivariateRealFunction f, double min, double max)
+         throws MaxIterationsExceededException, FunctionEvaluationException {

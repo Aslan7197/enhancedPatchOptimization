@@ -1,0 +1,21 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Closure_7/459/ChainableReverseAbstractInterpreter_Origin.java"	2023-02-22 12:32:52.223860790 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Closure_7/459/ChainableReverseAbstractInterpreter.java"	2023-02-22 12:32:52.223860790 +0900
+@@ -606,17 +606,7 @@
+       return matchesExpectation("number") ? getNativeType(NUMBER_TYPE) : null;
+     }
+ 
+-    @Override
+-    public JSType caseObjectType(ObjectType type) {
+-      if (value.equals("function")) {
+-        JSType ctorType = getNativeType(U2U_CONSTRUCTOR_TYPE);
+-        return resultEqualsValue && ctorType.isSubtype(type) ? ctorType : null;
+-          // Objects are restricted to "Function", subtypes are left
+-          // Only filter out subtypes of "function"
+-      }
+-      return matchesExpectation("object") ? type : null;
+-    }
+-
++@ Override public JSType caseObjectType ( ObjectType type ) { if ( value . equals ( "function" ) ) { JSType ctorType = getNativeType ( U2U_CONSTRUCTOR_TYPE ) ; if ( resultEqualsValue ) { return ctorType . isSubtype ( type ) ? ctorType : null ; } } return matchesExpectation ( "object" ) ? type : null ; }
+     @Override
+     public JSType caseStringType() {
+       return matchesExpectation("string") ? getNativeType(STRING_TYPE) : null;

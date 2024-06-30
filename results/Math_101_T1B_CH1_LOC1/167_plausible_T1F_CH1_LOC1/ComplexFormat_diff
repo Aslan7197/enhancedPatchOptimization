@@ -1,0 +1,81 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_101/167/ComplexFormat_Origin.java"	2023-02-22 19:35:17.174689748 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_101/167/ComplexFormat.java"	2023-02-22 19:35:17.178689636 +0900
+@@ -317,77 +317,7 @@
+      * @param pos input/ouput parsing parameter.
+      * @return the parsed {@link Complex} object.
+      */
+-    public Complex parse(String source, ParsePosition pos) {
+-        int initialIndex = pos.getIndex();
+-
+-        // parse whitespace
+-        parseAndIgnoreWhitespace(source, pos);
+-
+-        // parse real
+-        Number re = parseNumber(source, getRealFormat(), pos);
+-        if (re == null) {
+-            // invalid real number
+-            // set index back to initial, error index should already be set
+-            // character examined.
+-            pos.setIndex(initialIndex);
+-            return null;
+-        }
+-
+-        // parse sign
+-        int startIndex = pos.getIndex();
+-        char c = parseNextCharacter(source, pos);
+-        int sign = 0;
+-        switch (c) {
+-        case 0 :
+-            // no sign
+-            // return real only complex number
+-            return new Complex(re.doubleValue(), 0.0);
+-        case '-' :
+-            sign = -1;
+-            break;
+-        case '+' :
+-            sign = 1;
+-            break;
+-        default :
+-            // invalid sign
+-            // set index back to initial, error index should be the last
+-            // character examined.
+-            pos.setIndex(initialIndex);
+-            pos.setErrorIndex(startIndex);
+-            return null;
+-        }
+-
+-        // parse whitespace
+-        parseAndIgnoreWhitespace(source, pos);
+-
+-        // parse imaginary
+-        Number im = parseNumber(source, getRealFormat(), pos);
+-        if (im == null) {
+-            // invalid imaginary number
+-            // set index back to initial, error index should already be set
+-            // character examined.
+-            pos.setIndex(initialIndex);
+-            return null;
+-        }
+-
+-        // parse imaginary character
+-        int n = getImaginaryCharacter().length();
+-        startIndex = pos.getIndex();
+-        int endIndex = startIndex + n;
+-        if (
+-            source.substring(startIndex, endIndex).compareTo(
+-            getImaginaryCharacter()) != 0) {
+-            // set index back to initial, error index should be the start index
+-            // character examined.
+-            pos.setIndex(initialIndex);
+-            pos.setErrorIndex(startIndex);
+-            return null;
+-        }
+-        pos.setIndex(endIndex);
+-
+-        return new Complex(re.doubleValue(), im.doubleValue() * sign);
+-    }
+-     
++public Complex parse ( String source , ParsePosition pos ) { int initialIndex = pos . getIndex ( ) ; parseAndIgnoreWhitespace ( source , pos ) ; Number re = parseNumber ( source , getRealFormat ( ) , pos ) ; if ( re == null ) { pos . setIndex ( initialIndex ) ; return null ; } int startIndex = pos . getIndex ( ) ; char c = parseNextCharacter ( source , pos ) ; int sign = 0 ; switch ( c ) { case 0 : return new Complex ( re . doubleValue ( ) , 0.0 ) ; case '-' : sign = - 1 ; break ; case '+' : sign = 1 ; break ; default : pos . setIndex ( initialIndex ) ; pos . setErrorIndex ( startIndex ) ; return null ; } parseAndIgnoreWhitespace ( source , pos ) ; Number im = parseNumber ( source , getRealFormat ( ) , pos ) ; if ( im == null ) { pos . setIndex ( initialIndex ) ; return null ; } int n = getImaginaryCharacter ( ) . length ( ) ; startIndex = pos . getIndex ( ) ; int endIndex = startIndex + n ; if ( source . substring ( startIndex ) . compareTo ( getImaginaryCharacter ( ) ) != 0 ) { pos . setIndex ( initialIndex ) ; pos . setErrorIndex ( startIndex ) ; return null ; } pos . setIndex ( endIndex ) ; return new Complex ( re . doubleValue ( ) , im . doubleValue ( ) * sign ) ; }     
+     /**
+      * Parses <code>source</code> until a non-whitespace character is found.
+      *

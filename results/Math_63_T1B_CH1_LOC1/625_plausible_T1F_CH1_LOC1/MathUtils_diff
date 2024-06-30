@@ -1,0 +1,14 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_63/625/MathUtils_Origin.java"	2023-02-22 18:42:13.277916497 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_63/625/MathUtils.java"	2023-02-22 18:42:13.277916497 +0900
+@@ -413,10 +413,7 @@
+      * @param y second value
+      * @return {@code true} if the values are equal.
+      */
+-    public static boolean equals(double x, double y) {
+-        return (Double.isNaN(x) && Double.isNaN(y)) || x == y;
+-    }
+-
++public static boolean equals ( double x , double y ) { return ( x == y ) || x == y ; }
+     /**
+      * Returns true if both arguments are NaN or neither is NaN and they are
+      * equal as defined by {@link #equals(double,double) this method}.

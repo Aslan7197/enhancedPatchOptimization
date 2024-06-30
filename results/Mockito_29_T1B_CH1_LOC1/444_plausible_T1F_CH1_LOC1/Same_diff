@@ -1,0 +1,18 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Mockito_29/444/Same_Origin.java"	2023-02-22 20:43:04.462502225 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Mockito_29/444/Same.java"	2023-02-22 20:43:04.466502250 +0900
+@@ -23,14 +23,7 @@
+         return wanted == actual;
+     }
+ 
+-    public void describeTo(Description description) {
+-        description.appendText("same(");
+-        appendQuoting(description);
+-        description.appendText(wanted.toString());
+-        appendQuoting(description);
+-        description.appendText(")");
+-    }
+-
++public void describeTo ( Description description ) { description . appendText ( "same(" ) ; appendQuoting ( description ) ; description . appendText ( String . valueOf ( wanted ) ) ; appendQuoting ( description ) ; description . appendText ( ")" ) ; }
+     private void appendQuoting(Description description) {
+         if (wanted instanceof String) {
+             description.appendText("\"");

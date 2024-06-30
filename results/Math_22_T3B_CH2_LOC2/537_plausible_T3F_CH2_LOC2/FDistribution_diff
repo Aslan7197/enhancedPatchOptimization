@@ -1,0 +1,14 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_22/537/FDistribution_Origin.java"	2023-02-22 17:53:19.709641350 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_22/537/FDistribution.java"	2023-02-22 17:53:19.709641350 +0900
+@@ -271,10 +271,7 @@
+     }
+ 
+     /** {@inheritDoc} */
+-    public boolean isSupportLowerBoundInclusive() {
+-        return true;
+-    }
+-
++public boolean isSupportLowerBoundInclusive ( ) { return ! true ; }
+     /** {@inheritDoc} */
+     public boolean isSupportUpperBoundInclusive() {
+         return false;

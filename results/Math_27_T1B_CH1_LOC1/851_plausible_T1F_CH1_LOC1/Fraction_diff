@@ -1,0 +1,14 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_27/851/Fraction_Origin.java"	2023-02-22 18:00:35.913813864 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_27/851/Fraction.java"	2023-02-22 18:00:35.913813864 +0900
+@@ -593,10 +593,7 @@
+      *
+      * @return the fraction percentage as a <tt>double</tt>.
+      */
+-    public double percentageValue() {
+-        return multiply(100).doubleValue();
+-    }
+-
++public double percentageValue ( ) { return doubleValue ( ) * 100 ; }
+     /**
+      * <p>Creates a {@code Fraction} instance with the 2 parts
+      * of a fraction Y/Z.</p>

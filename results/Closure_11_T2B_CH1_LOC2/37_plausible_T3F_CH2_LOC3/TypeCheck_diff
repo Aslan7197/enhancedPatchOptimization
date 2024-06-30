@@ -1,0 +1,30 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Closure_11/37/TypeCheck_Origin.java"	2023-02-22 12:38:16.181424911 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Closure_11/37/TypeCheck.java"	2023-02-22 12:38:16.185424931 +0900
+@@ -1300,26 +1300,7 @@
+    * @param n The node being visited.
+    * @param parent The parent of <code>n</code>
+    */
+-  private void visitGetProp(NodeTraversal t, Node n, Node parent) {
+-    // obj.prop or obj.method()
+-    // Lots of types can appear on the left, a call to a void function can
+-    // never be on the left. getPropertyType will decide what is acceptable
+-    // and what isn't.
+-    Node property = n.getLastChild();
+-    Node objNode = n.getFirstChild();
+-    JSType childType = getJSType(objNode);
+-
+-    if (childType.isDict()) {
+-      report(t, property, TypeValidator.ILLEGAL_PROPERTY_ACCESS, "'.'", "dict");
+-    } else if (n.getJSType() != null && parent.isAssign()) {
+-      return;
+-    } else if (validator.expectNotNullOrUndefined(t, n, childType,
+-        "No properties on this expression", getNativeType(OBJECT_TYPE))) {
+-      checkPropertyAccess(childType, property.getString(), t, n);
+-    }
+-    ensureTyped(t, n);
+-  }
+-
++private void visitGetProp ( NodeTraversal t , Node n , Node parent ) { Node property = n . getLastChild ( ) ; Node objNode = n . getFirstChild ( ) ; JSType childType = getJSType ( objNode ) ; if ( childType . isDict ( ) ) { report ( t , property , TypeValidator . ILLEGAL_PROPERTY_ACCESS , "'.'" , "dict" ) ; } else if ( validator . expectNotNullOrUndefined ( t , n , childType , "No properties on this expression" , getNativeType ( OBJECT_TYPE ) ) ) { checkPropertyAccess ( childType , property . getString ( ) , t , n ) ; } ensureTyped ( t , n ) ; if ( parent . isAssign ( ) ) return ; }
+   /**
+    * Emit a warning if we can prove that a property cannot possibly be
+    * defined on an object. Note the difference between JS and a strictly

@@ -1,0 +1,15 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Chart_8/486/Week_Origin.java"	2023-02-22 11:34:26.417345505 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Chart_8/486/Week.java"	2023-02-22 11:34:26.421345525 +0900
+@@ -170,11 +170,7 @@
+      *
+      * @deprecated As of 1.0.7, use {@link #Week(Date, TimeZone, Locale)}.
+      */
+-    public Week(Date time, TimeZone zone) {
+-        // defer argument checking...
+-        this(time, RegularTimePeriod.DEFAULT_TIME_ZONE, Locale.getDefault());
+-    }
+-
++public Week ( Date time , TimeZone zone ) { this ( time , zone , Locale . getDefault ( ) ) ; }
+     /**
+      * Creates a time period for the week in which the specified date/time
+      * falls, calculated relative to the specified time zone.

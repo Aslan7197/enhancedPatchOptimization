@@ -1,0 +1,36 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Mockito_5/264/VerificationOverTimeImpl_Origin.java"	2023-02-22 19:41:54.351767647 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Mockito_5/264/VerificationOverTimeImpl.java"	2023-02-22 19:41:54.355767610 +0900
+@@ -72,32 +72,7 @@
+      *
+      * @throws MockitoAssertionError if the delegate verification mode does not succeed before the timeout
+      */
+-    public void verify(VerificationData data) {
+-        AssertionError error = null;
+-
+-        timer.start();
+-        while (timer.isCounting()) {
+-            try {
+-                delegate.verify(data);
+-
+-                if (returnOnSuccess) {
+-                    return;
+-                } else {
+-                    error = null;
+-                }
+-            } catch (MockitoAssertionError e) {
+-                error = handleVerifyException(e);
+-            }
+-            catch (org.mockito.exceptions.verification.junit.ArgumentsAreDifferent e) {
+-                error = handleVerifyException(e);
+-            }
+-        }
+-
+-        if (error != null) {
+-            throw error;
+-        }
+-    }
+-
++public void verify ( VerificationData data ) { AssertionError error = null ; timer . start ( ) ; while ( timer . isCounting ( ) ) { try { delegate . verify ( data ) ; if ( returnOnSuccess ) { return ; } else { error = null ; } } catch ( MockitoAssertionError e ) { error = handleVerifyException ( e ) ; } catch ( AssertionError e ) { error = handleVerifyException ( e ) ; } } if ( error != null ) { throw error ; } }
+     private AssertionError handleVerifyException(AssertionError e) {
+         if (canRecoverFromFailure(delegate)) {
+             sleep(pollingPeriodMillis);

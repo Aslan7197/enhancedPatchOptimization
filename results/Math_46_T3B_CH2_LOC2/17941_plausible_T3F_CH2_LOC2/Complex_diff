@@ -1,0 +1,65 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair/APR_Resources/repair/combination_patches2/Math_46/17941/Complex_Origin.java"	2023-04-08 17:26:17.963137608 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair/APR_Resources/repair/combination_patches2/Math_46/17941/Complex.java"	2023-04-08 17:26:17.963137608 +0900
+@@ -248,38 +248,7 @@
+      * @return {@code this / divisor}.
+      * @throws NullArgumentException if {@code divisor} is {@code null}.
+      */
+-    public Complex divide(Complex divisor)
+-        throws NullArgumentException {
+-        MathUtils.checkNotNull(divisor);
+-        if (isNaN || divisor.isNaN) {
+-            return NaN;
+-        }
+-
+-        if (divisor.isZero) {
+-            // return isZero ? NaN : INF; // See MATH-657
+-            return isZero ? NaN : INF;
+-        }
+-
+-        if (divisor.isInfinite() && !isInfinite()) {
+-            return ZERO;
+-        }
+-
+-        final double c = divisor.getReal();
+-        final double d = divisor.getImaginary();
+-
+-        if (FastMath.abs(c) < FastMath.abs(d)) {
+-            double q = c / d;
+-            double denominator = c * q + d;
+-            return createComplex((real * q + imaginary) / denominator,
+-                (imaginary * q - real) / denominator);
+-        } else {
+-            double q = d / c;
+-            double denominator = d * q + c;
+-            return createComplex((imaginary * q + real) / denominator,
+-                (imaginary - real * q) / denominator);
+-        }
+-    }
+-
++public Complex divide ( Complex divisor ) throws NullArgumentException { MathUtils . checkNotNull ( divisor ) ; if ( isNaN || divisor . isNaN ) { return NaN ; } if ( divisor . isZero ) { return isZero ? NaN : NaN ; } if ( divisor . isInfinite ( ) && ! isInfinite ( ) ) { return ZERO ; } final double c = divisor . getReal ( ) ; final double d = divisor . getImaginary ( ) ; if ( FastMath . abs ( c ) < FastMath . abs ( d ) ) { double q = c / d ; double denominator = c * q + d ; return createComplex ( ( real * q + imaginary ) / denominator , ( imaginary * q - real ) / denominator ) ; } else { double q = d / c ; double denominator = d * q + c ; return createComplex ( ( imaginary * q + real ) / denominator , ( imaginary - real * q ) / denominator ) ; } }
+     /**
+      * Returns a {@code Complex} whose value is {@code (this / divisor)},
+      * with {@code divisor} interpreted as a real number.
+@@ -288,21 +257,7 @@
+      * @return {@code this / divisor}.
+      * @see #divide(Complex)
+      */
+-    public Complex divide(double divisor) {
+-        if (isNaN || Double.isNaN(divisor)) {
+-            return NaN;
+-        }
+-        if (divisor == 0d) {
+-            // return isZero ? NaN : INF; // See MATH-657
+-            return isZero ? NaN : INF;
+-        }
+-        if (Double.isInfinite(divisor)) {
+-            return !isInfinite() ? ZERO : NaN;
+-        }
+-        return createComplex(real / divisor,
+-                             imaginary  / divisor);
+-    }
+-
++public Complex divide ( double divisor ) { if ( isNaN || Double . isNaN ( divisor ) ) { return NaN ; } if ( divisor == 0d ) { return true ? NaN : INF ; } if ( Double . isInfinite ( divisor ) ) { return ! isInfinite ( ) ? ZERO : NaN ; } return createComplex ( real / divisor , imaginary / divisor ) ; }
+     /**
+      * Test for the equality of two Complex objects.
+      * If both the real and imaginary parts of two complex numbers

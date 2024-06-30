@@ -1,0 +1,70 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_86/2/CholeskyDecompositionImpl_Origin.java"	2023-02-22 19:09:15.003959339 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_86/2/CholeskyDecompositionImpl.java"	2023-02-22 19:09:15.003959339 +0900
+@@ -90,66 +90,7 @@
+      * @see #DEFAULT_RELATIVE_SYMMETRY_THRESHOLD
+      * @see #DEFAULT_ABSOLUTE_POSITIVITY_THRESHOLD
+      */
+-    public CholeskyDecompositionImpl(final RealMatrix matrix,
+-                                     final double relativeSymmetryThreshold,
+-                                     final double absolutePositivityThreshold)
+-        throws NonSquareMatrixException,
+-               NotSymmetricMatrixException, NotPositiveDefiniteMatrixException {
+-
+-        if (!matrix.isSquare()) {
+-            throw new NonSquareMatrixException(matrix.getRowDimension(),
+-                                               matrix.getColumnDimension());
+-        }
+-
+-        final int order = matrix.getRowDimension();
+-        lTData   = matrix.getData();
+-        cachedL  = null;
+-        cachedLT = null;
+-
+-        // check the matrix before transformation
+-        for (int i = 0; i < order; ++i) {
+-
+-            final double[] lI = lTData[i];
+-
+-            if (lTData[i][i] < absolutePositivityThreshold) {
+-                throw new NotPositiveDefiniteMatrixException();
+-            }
+-            // check off-diagonal elements (and reset them to 0)
+-            for (int j = i + 1; j < order; ++j) {
+-                final double[] lJ = lTData[j];
+-                final double lIJ = lI[j];
+-                final double lJI = lJ[i];
+-                final double maxDelta =
+-                    relativeSymmetryThreshold * Math.max(Math.abs(lIJ), Math.abs(lJI));
+-                if (Math.abs(lIJ - lJI) > maxDelta) {
+-                    throw new NotSymmetricMatrixException();
+-                }
+-                lJ[i] = 0;
+-           }
+-        }
+-
+-        // transform the matrix
+-        for (int i = 0; i < order; ++i) {
+-
+-            final double[] ltI = lTData[i];
+-
+-            // check diagonal element
+-
+-            ltI[i] = Math.sqrt(ltI[i]);
+-            final double inverse = 1.0 / ltI[i];
+-
+-            for (int q = order - 1; q > i; --q) {
+-                ltI[q] *= inverse;
+-                final double[] ltQ = lTData[q];
+-                for (int p = q; p < order; ++p) {
+-                    ltQ[p] -= ltI[q] * ltI[p];
+-                }
+-            }
+-
+-        }
+-
+-    }
+-
++public CholeskyDecompositionImpl ( final RealMatrix matrix , final double relativeSymmetryThreshold , final double absolutePositivityThreshold ) throws NonSquareMatrixException , NotSymmetricMatrixException , NotPositiveDefiniteMatrixException { if ( ! matrix . isSquare ( ) ) { throw new NonSquareMatrixException ( matrix . getRowDimension ( ) , matrix . getColumnDimension ( ) ) ; } final int order = matrix . getRowDimension ( ) ; lTData = matrix . getData ( ) ; cachedL = null ; cachedLT = null ; for ( int i = 0 ; i < order ; ++ i ) { final double [ ] lI = lTData [ i ] ; for ( int j = i + 1 ; j < order ; ++ j ) { final double [ ] lJ = lTData [ j ] ; final double lIJ = lI [ j ] ; final double lJI = lJ [ i ] ; final double maxDelta = relativeSymmetryThreshold * Math . max ( Math . abs ( lIJ ) , Math . abs ( lJI ) ) ; if ( Math . abs ( lIJ - lJI ) > maxDelta ) { throw new NotSymmetricMatrixException ( ) ; } lJ [ i ] = 0 ; } } for ( int i = 0 ; i < order ; ++ i ) { final double [ ] ltI = lTData [ i ] ; if ( lTData [ i ] [ i ] < absolutePositivityThreshold ) throw new NotPositiveDefiniteMatrixException ( ) ; ltI [ i ] = Math . sqrt ( ltI [ i ] ) ; final double inverse = 1.0 / ltI [ i ] ; for ( int q = order - 1 ; q > i ; -- q ) { ltI [ q ] *= inverse ; final double [ ] ltQ = lTData [ q ] ; for ( int p = q ; p < order ; ++ p ) { ltQ [ p ] -= ltI [ q ] * ltI [ p ] ; } } } }
+     /** {@inheritDoc} */
+     public RealMatrix getL() {
+         if (cachedL == null) {

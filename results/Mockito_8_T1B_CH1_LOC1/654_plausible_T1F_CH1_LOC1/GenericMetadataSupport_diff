@@ -1,0 +1,30 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Mockito_8/654/GenericMetadataSupport_Origin.java"	2023-02-22 19:51:12.426076006 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Mockito_8/654/GenericMetadataSupport.java"	2023-02-22 19:51:12.426076006 +0900
+@@ -63,26 +63,7 @@
+     protected Map<TypeVariable, Type> contextualActualTypeParameters = new HashMap<TypeVariable, Type>();
+ 
+ 
+-    protected void registerTypeVariablesOn(Type classType) {
+-        if (!(classType instanceof ParameterizedType)) {
+-            return;
+-        }
+-        ParameterizedType parameterizedType = (ParameterizedType) classType;
+-        TypeVariable[] typeParameters = ((Class<?>) parameterizedType.getRawType()).getTypeParameters();
+-        Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+-        for (int i = 0; i < actualTypeArguments.length; i++) {
+-            TypeVariable typeParameter = typeParameters[i];
+-            Type actualTypeArgument = actualTypeArguments[i];
+-
+-            if (actualTypeArgument instanceof WildcardType) {
+-                contextualActualTypeParameters.put(typeParameter, boundsOf((WildcardType) actualTypeArgument));
+-            } else {
+-                contextualActualTypeParameters.put(typeParameter, actualTypeArgument);
+-            }
+-            // logger.log("For '" + parameterizedType + "' found type variable : { '" + typeParameter + "(" + System.identityHashCode(typeParameter) + ")" + "' : '" + actualTypeArgument + "(" + System.identityHashCode(typeParameter) + ")" + "' }");
+-        }
+-    }
+-
++protected void registerTypeVariablesOn ( Type classType ) { if ( ! ( classType instanceof ParameterizedType ) ) { return ; } ParameterizedType parameterizedType = ( ParameterizedType ) classType ; TypeVariable [ ] typeParameters = ( ( Class < ? > ) parameterizedType . getRawType ( ) ) . getTypeParameters ( ) ; Type [ ] actualTypeArguments = parameterizedType . getActualTypeArguments ( ) ; for ( int i = 0 ; i < actualTypeArguments . length ; i ++ ) { TypeVariable typeParameter = typeParameters [ i ] ; Type actualTypeArgument = actualTypeArguments [ i ] ; if ( actualTypeArgument instanceof WildcardType ) { contextualActualTypeParameters . put ( typeParameter , boundsOf ( ( WildcardType ) actualTypeArgument ) ) ; } else if ( ! actualTypeArgument . equals ( typeParameter ) ) { contextualActualTypeParameters . put ( typeParameter , actualTypeArgument ) ; } } }
+     protected void registerTypeParametersOn(TypeVariable[] typeParameters) {
+         for (TypeVariable typeVariable : typeParameters) {
+             registerTypeVariableIfNotPresent(typeVariable);

@@ -1,0 +1,11 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Mockito_38/403/ArgumentMatchingTool_Origin.java"	2023-02-22 20:49:43.209101435 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Mockito_38/403/ArgumentMatchingTool.java"	2023-02-22 20:49:43.213101463 +0900
+@@ -44,7 +44,4 @@
+         }
+     }
+ 
+-    private boolean toStringEquals(Matcher m, Object arg) {
+-        return StringDescription.toString(m).equals(arg.toString());
+-    }
+-}
++private boolean toStringEquals ( Matcher m , Object arg ) { return StringDescription . toString ( m ) . equals ( String . valueOf ( arg ) ) ; }}

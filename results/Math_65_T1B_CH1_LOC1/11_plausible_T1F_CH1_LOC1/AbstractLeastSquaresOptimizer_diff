@@ -1,0 +1,19 @@
+--- "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_65/11/AbstractLeastSquaresOptimizer_Origin.java"	2023-02-22 18:42:15.829931597 +0900
++++ "/home/selab/\353\260\224\355\203\225\355\231\224\353\251\264/MCRepair2/APR_Resources/repair/combination_patches/Math_65/11/AbstractLeastSquaresOptimizer.java"	2023-02-22 18:42:15.829931597 +0900
+@@ -251,15 +251,7 @@
+      * the reciprocal of the weights.
+      * @return chi-square value
+      */
+-    public double getChiSquare() {
+-        double chiSquare = 0;
+-        for (int i = 0; i < rows; ++i) {
+-            final double residual = residuals[i];
+-            chiSquare += residual * residual / residualsWeights[i];
+-        }
+-        return chiSquare;
+-    }
+-
++public double getChiSquare ( ) { double chiSquare = 0 ; for ( int i = 0 ; i < rows ; ++ i ) { final double residual = residuals [ i ] ; chiSquare += residual * residual * residualsWeights [ i ] ; } return chiSquare ; }
+     /**
+      * Get the covariance matrix of optimized parameters.
+      * @return covariance matrix
